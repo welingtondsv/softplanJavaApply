@@ -5,6 +5,9 @@ import { AppComponent } from './app.component';
 import { ListaComponent } from './pessoa/lista/lista.component';
 import { CadastroComponent } from './pessoa/cadastro/cadastro.component';
 import { EdicaoComponent } from './pessoa/edicao/edicao.component';
+import {HttpClientModule} from '@angular/common/http';
+import {RouterModule} from '@angular/router';
+import {rotas} from './app.rotas';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,9 @@ import { EdicaoComponent } from './pessoa/edicao/edicao.component';
     EdicaoComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    rotas
   ],
   providers: [],
   bootstrap: [AppComponent]
