@@ -26,6 +26,12 @@ public class PessoaService implements IPessoaService{
     }
 
     @Override
+    public Pessoa buscarPorId(Long id) {
+        validarIdExiste(id);
+        return repository.findById(id).get();
+    }
+
+    @Override
     public void atualizar(Long id, Pessoa pessoaAtualizada) {
         validarIdExiste(id);
         validarAtualizacaoCpf(pessoaAtualizada.getCpf(), id);

@@ -2,6 +2,7 @@ package com.javaapply.softplan.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -11,8 +12,7 @@ import javax.validation.constraints.Past;
 import java.util.Date;
 
 @Entity
-public class Pessoa {
-
+public class Pessoa extends RepresentationModel<Pessoa> {
     @Id
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @GeneratedValue(strategy = GenerationType.AUTO)

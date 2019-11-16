@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 @RestController()
 @RequestMapping("/pessoa")
 public class PessoaController {
@@ -21,13 +24,23 @@ public class PessoaController {
 
     @GetMapping(value = "/listar")
     public List<Pessoa> listarPessoas(){
-        return pessoaRepository.findAll();
+        List<Pessoa> pessoas = pessoaRepository.findAll();
+        pessoas.forEach(pessoa -> pessoa.add(linkTo(methodOn(PessoaController.class).buscarPessoa(pessoa.getId())).withSelfRel()));
+        return pessoas;
+    }
+
+    @GetMapping(value = "{id}")
+    public Pessoa buscarPessoa(@PathVariable("id") Long id){
+        return pessoaService.buscarPorId(id);
     }
 
     @PostMapping(value = "/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
-    public Pessoa cadastrar(@RequestBody @Valid Pessoa pessoa){
-        return pessoaService.cadastrar(pessoa);
+    public Pessoa cadastrar(@RequestBody @Valid Pessoa pessoaCadastrar){
+        Pessoa pessoa = pessoaService.cadastrar(pessoaCadastrar);
+        pessoa.add(linkTo(methodOn(PessoaController.class).listarPessoas()).withRel("listar todas pessoas cadastradas"));
+        pessoa.add(linkTo(methodOn(PessoaController.class).buscarPessoa(pessoa.getId())).withSelfRel());
+        return pessoa;
     }
 
     @PutMapping(value = "/atualizar/{id}")
