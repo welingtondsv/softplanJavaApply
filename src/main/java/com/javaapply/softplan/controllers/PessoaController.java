@@ -32,7 +32,7 @@ public class PessoaController {
 
     @PutMapping(value = "/atualizar/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void atualizar(@PathVariable("id") Long id, @RequestBody Pessoa pessoaAtualizada){
+    public void atualizar(@PathVariable("id") Long id, @RequestBody @Valid Pessoa pessoaAtualizada){
         pessoaService.atualizar(id, pessoaAtualizada);
     }
 

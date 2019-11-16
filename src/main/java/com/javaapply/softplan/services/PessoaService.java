@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 public class PessoaService implements IPessoaService{
@@ -28,8 +29,10 @@ public class PessoaService implements IPessoaService{
     public void atualizar(Long id, Pessoa pessoaAtualizada) {
         validarIdExiste(id);
         validarAtualizacaoCpf(pessoaAtualizada.getCpf(), id);
-        pessoaAtualizada.setId(id);
+        Optional<Pessoa> pessoa = repository.findById(id);
+        pessoaAtualizada.setDataCadastro(pessoa.get().getDataCadastro());
         pessoaAtualizada.setDataAtualizacao(new Date());
+        pessoaAtualizada.setId(id);
         repository.save(pessoaAtualizada);
     }
 
@@ -47,13 +50,13 @@ public class PessoaService implements IPessoaService{
     }
 
     private void validarIdExiste(Long id) {
-        if(repository.countById(id) == 0){
+        if(!repository.existsById(id)){
             throw new IdNaoExistente();
         }
     }
 
     private void validarCpfExistente(String cpf) {
-        if(repository.countByCpf(cpf) != 0){
+        if(repository.existsByCpf(cpf)){
             throw new CpfExistenteException();
         }
     }
