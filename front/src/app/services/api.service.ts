@@ -19,8 +19,8 @@ export class ApiService {
   }
 
   deletarPessoa(id: bigint): Observable<any> {
-    return null;
-    // return this.http.delete<any>(this.baseUrl + id);
+    const headers = this.montarHeader();
+    return this.http.delete(`${this.baseUrl}/deletar/${id}`, {headers});
   }
 
   cadastrarPessoa(value: any) {

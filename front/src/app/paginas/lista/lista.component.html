@@ -1,10 +1,9 @@
 <div class="col-md-12 lista-container">
   <h2 style="margin: auto"> Lista de pessoas</h2>
-  <button class="btn btn-danger" style="width:15%" (click)="cadastrar()"> Cadastrar pessoa</button>
+  <button class="btn btn-success" style="width:15%" (click)="cadastrar()"> Cadastrar pessoa</button>
   <table class="table table-striped">
     <thead>
     <tr>
-      <th class="d-none">Id</th>
       <th>Nome</th>
       <th>Sexo</th>
       <th>E-mail</th>
@@ -17,7 +16,6 @@
     </thead>
     <tbody>
     <tr *ngFor="let pessoa of pessoas">
-      <td class="d-none">{{pessoa.id}}</td>
       <td>{{pessoa.nome}}</td>
       <td>{{pessoa.sexo}}</td>
       <td>{{pessoa.email}}</td>
@@ -25,8 +23,8 @@
       <td>{{pessoa.naturalidade || 'Não informado'}}</td>
       <td>{{pessoa.nacionalidade || 'Não informado'}}</td>
       <td>{{pessoa.cpf}}</td>
-      <td><button class="btn btn-success" (click)="deletar(pessoa)"> Deletar</button>
-        <button class="btn btn-success" (click)="editar(pessoa)" style="margin-left: 20px;"> Editar</button></td>
+      <td><button class="btn btn-danger" (click)="deletar(pessoa)"> Deletar</button>
+        <button class="btn btn-info" (click)="editar(pessoa)" style="margin-left: 20px;"> Editar</button></td>
     </tr>
     </tbody>
   </table>

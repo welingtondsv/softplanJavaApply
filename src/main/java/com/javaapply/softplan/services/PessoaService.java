@@ -20,6 +20,7 @@ public class PessoaService implements IPessoaService{
 
     @Override
     public Pessoa cadastrar(Pessoa pessoaParaCadastro) {
+        removerMascaraCPF(pessoaParaCadastro);
         validarCpfExistente(pessoaParaCadastro.getCpf());
         pessoaParaCadastro.setDataCadastro(new Date());
         return repository.save(pessoaParaCadastro);
@@ -34,6 +35,7 @@ public class PessoaService implements IPessoaService{
     @Override
     public void atualizar(Long id, Pessoa pessoaAtualizada) {
         validarIdExiste(id);
+        removerMascaraCPF(pessoaAtualizada);
         validarAtualizacaoCpf(pessoaAtualizada.getCpf(), id);
         Optional<Pessoa> pessoa = repository.findById(id);
         pessoaAtualizada.setDataCadastro(pessoa.get().getDataCadastro());
@@ -65,5 +67,11 @@ public class PessoaService implements IPessoaService{
         if(repository.existsByCpf(cpf)){
             throw new CpfExistenteException();
         }
+    }
+
+    private void removerMascaraCPF(Pessoa pessoa) {
+        String cpf = pessoa.getCpf();
+        cpf = cpf.replaceAll("\\D", "");
+        pessoa.setCpf(cpf);
     }
 }
