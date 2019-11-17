@@ -23,6 +23,11 @@ export class ApiService {
     // return this.http.delete<any>(this.baseUrl + id);
   }
 
+  cadastrarPessoa(value: any) {
+    const headers = this.montarHeader();
+    return this.http.post(`${this.baseUrl}/cadastrar`, value, {headers});
+  }
+
   montarHeader(): HttpHeaders {
     return new HttpHeaders()
       .set('Authorization', `Basic ${window.btoa('softplayer:123')}`);

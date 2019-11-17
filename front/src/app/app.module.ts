@@ -2,12 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { ListaComponent } from './pessoa/lista/lista.component';
-import { CadastroComponent } from './pessoa/cadastro/cadastro.component';
-import { EdicaoComponent } from './pessoa/edicao/edicao.component';
+import { ListaComponent } from './paginas/lista/lista.component';
+import { CadastroComponent } from './paginas/cadastro/cadastro.component';
+import { EdicaoComponent } from './paginas/edicao/edicao.component';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {rotas} from './app.rotas';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {rotas} from './app.rotas';
   imports: [
     BrowserModule,
     HttpClientModule,
-    rotas
+    rotas,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,7 @@
 import {RouterModule, Routes} from '@angular/router';
-import {CadastroComponent} from './pessoa/cadastro/cadastro.component';
-import {ListaComponent} from './pessoa/lista/lista.component';
-import {EdicaoComponent} from './pessoa/edicao/edicao.component';
+import {CadastroComponent} from './paginas/cadastro/cadastro.component';
+import {ListaComponent} from './paginas/lista/lista.component';
+import {EdicaoComponent} from './paginas/edicao/edicao.component';
 
 const routes: Routes = [
   { path: 'cadastrar-pessoa', component: CadastroComponent },

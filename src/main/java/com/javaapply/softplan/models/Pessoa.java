@@ -2,6 +2,7 @@ package com.javaapply.softplan.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.*;
@@ -32,6 +33,7 @@ public class Pessoa extends RepresentationModel<Pessoa> {
 
     @NotNull(message = "{dataNascimento.not.null}")
     @Past(message = "{dataNascimento.not.valid}")
+    @Temporal(TemporalType.DATE)
     @Column(nullable = false)
     private Date dataNascimento;
 
@@ -47,10 +49,12 @@ public class Pessoa extends RepresentationModel<Pessoa> {
     private String cpf;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @Temporal(TemporalType.DATE)
     @Column
     private Date dataCadastro;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @Temporal(TemporalType.DATE)
     @Column
     private Date dataAtualizacao;
 
