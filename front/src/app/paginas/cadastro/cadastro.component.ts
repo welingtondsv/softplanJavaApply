@@ -37,8 +37,11 @@ export class CadastroComponent implements OnInit {
     } else {
       this.apiService.cadastrarPessoa(this.pessoaForm.value)
         .subscribe(data => {
-          this.router.navigate(['listar-pessoas']);
-        });
+            this.router.navigate(['listar-pessoas']);
+          },
+          (erro) => {
+            alert(erro.error.message);
+          });
     }
 
   }
@@ -51,6 +54,6 @@ export class CadastroComponent implements OnInit {
         camposInvalidos.push(campo);
       }
     }
-    alert('Erro ao enviar cadastro, os seguintes campos estão invalidos para cadastro: \n' +  camposInvalidos);
+    alert('Erro ao enviar cadastro, os seguintes campos estão invalidos para cadastro: \n' + camposInvalidos);
   }
 }

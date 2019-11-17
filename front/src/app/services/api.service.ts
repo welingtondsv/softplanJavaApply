@@ -32,4 +32,14 @@ export class ApiService {
     return new HttpHeaders()
       .set('Authorization', `Basic ${window.btoa('softplayer:123')}`);
   }
+
+  getPessoaPorId(pessoaId: string) {
+    const headers = this.montarHeader();
+    return this.http.get<Pessoa>(`${this.baseUrl}/${pessoaId}`, {headers});
+  }
+
+  atualizarPessoa(pessoa: Pessoa) {
+    const headers = this.montarHeader();
+    return this.http.put(`${this.baseUrl}/atualizar/${pessoa.id}`, pessoa, {headers});
+  }
 }
