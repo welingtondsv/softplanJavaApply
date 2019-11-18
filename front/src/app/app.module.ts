@@ -9,13 +9,15 @@ import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {rotas} from './app.rotas';
 import {ReactiveFormsModule} from '@angular/forms';
+import { SourceComponent } from './paginas/source/source.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListaComponent,
     CadastroComponent,
-    EdicaoComponent
+    EdicaoComponent,
+    SourceComponent
   ],
   imports: [
     BrowserModule,
