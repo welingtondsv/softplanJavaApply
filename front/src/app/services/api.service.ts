@@ -11,7 +11,7 @@ export class ApiService {
   constructor(private http: HttpClient) {
   }
 
-  baseUrl = 'http://localhost:8080/pessoa';
+  baseUrl = 'http://localhost:80/pessoa';
 
   getPessoas(): Observable<Pessoa[]> {
     const headers = this.montarHeader();
