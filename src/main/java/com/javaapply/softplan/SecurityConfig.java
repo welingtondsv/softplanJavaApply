@@ -22,8 +22,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.inMemoryAuthentication()
 				.withUser("softplayer")
 				.password(passwordEncoder().encode("123"))
-				.authorities("ROLE_USER");;
-	}
+				.authorities("ROLE_USER");
+    }
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
