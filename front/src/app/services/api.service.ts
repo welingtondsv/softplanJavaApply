@@ -1,17 +1,18 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Pessoa} from '../models/pessoa';
+import {DOCUMENT} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, @Inject(DOCUMENT) private document: Document) {
   }
 
-  baseUrl = 'http://127.0.0.1:8080/pessoa';
+  baseUrl = `${this.document.location.origin}/pessoa`;
 
   getPessoas(): Observable<Pessoa[]> {
     const headers = this.montarHeader();
